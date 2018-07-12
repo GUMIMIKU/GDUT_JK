@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>绝地求生</title>
+	<style type="text/css">
+	ul,li{list-style: none;}
+	*{margin: 0}
+	header{position: fixed; top: 0; left: 0; background-color: #333; height: 70px; z-index: 999; width: 100%; display: flex;}
+	header .nav_box{width: 65%}
+	header .nav_box ul{display: flex; }
+	header .nav_box ul li{ width: 25%; text-decoration:none;}
+	header a{color: #fff}
+	.first_box{margin-top: 30px;}
+	body{height: 100%;overflow: hidden;}
+	.container{transform: translate(0,0); transition: all 1s}
+	video{width: 100%;display: block;}
+
+	 .sprite{background: url('sprite.png');}
+
+	 .first_box,.second_box.,.third_box,.logo_box,.button_box{position: relative;}
+	 .first_box .first_bg{position: absolute; height: 238px; top: 400px; left: 24%; width: 786px; background-position: 0 -82px;}
+	 .second_bg{position: absolute;width: 370px;height: 170px; top: 1200px; left: 40%; background-position: -377px  -505px}
+	 .third_bg{    position: absolute;width: 522px;height: 241px;top: 1830px;left: 450px;background-position: -800px -193px;}
+	 .logo_img{ position: absolute;width: 148px;height: 66px;top: 2px;left: 115px;background-position: -381px -218px;background-size: 670px 489px;}
+	 .button_img{     position: absolute;width: 147px;height: 40px;top: 14px;left: 1060px;background-position: -790px -568px;}
+	 .left_nav{background: url(bg_nav.png);position: absolute;left: 0;top: 70px;width: 42px;height: 936px;    z-index: 2;}
+	 .nav_content{color: #fff}
+	 .nav_content li{position: absolute; left: 33px;width: 100px}
+	  .nav_content li:nth-child(1){top: 55px;}
+	  .nav_content li:nth-child(2){top: 255px}
+	  .nav_content li:nth-child(3){top: 462px}
+</style>
+</head>
+<body>
+	<header>
+		<div class="logo_box">
+			<a href="">
+				<p class="logo_img sprite"></p>
+			</a>
+		</div>
+		<div class="nav_box" style="position:absolute; left:224px; top:25px;">
+			<ul>
+				<li><a href="">官网首页</a></li>
+				<li><a href="">绑定查询</a></li>
+				<li><a href="">国服预约</a></li>
+				<li><a href="">老兵绑定</a></li>
+				<li><a href="">游戏特色</a></li>
+				<li><a href="">社区APP</a></li>
+				<li><a href="">网吧认证</a></li>
+			</ul>
+		</div>
+		<div class="button_box">
+			<a href="">
+				<p class="button_img sprite"></p>
+			</a>
+		</div>
+	</header>
+
+	<div class="left_nav">
+			<ul class="nav_content">
+				<li id = "Id0" onclick="changeTo(0)" style="color:Red;">N</li>
+				<li id = "Id1"  onclick="changeTo(1)">NE</li>
+				<li id = "Id2"  onclick="changeTo(2)">E</li>
+			</ul>
+	</div>
+	<div class="container"  >
+		
+		<div class="first_box">
+			<video style="width:100% " src="http://videooc.tc.qq.com/vcloud1022.tc.qq.com/1022_e48ffd8a30074766bfae4ba50cbbbce5.f0.mp4?vkey=57ACC28E2FACE0864123AF5316E4A8802693D9D9C0222CDAD1B4AC3379242F46153212E9D5FBA764AD19DB69593B79639738AA0C57041116577E21890A6A7F83F2C29FD0356437202E656A28AD2E62C090D176A25E0A4365&sha=0" autoplay="" loop=""></video>
+			<p class="first_bg sprite">
+				
+			</p>
+		</div>
+		 
+		<div class="second_box">
+			<video src="http://videooc.tc.qq.com/vcloud1022.tc.qq.com/1022_18cc6cba2ebb4635aa06d2020134d1be.f0.mp4?vkey=C5265B3C8951C4837A83EA9A336FFB9E7646BF4E9A61C1F9F4245AA406732659E86BA852926C262B67D3D999DC7D78CE2B509FC205AB2651A865536CBAD40EE7A431738C09252B24716F3B1A608265A3B31E81486BF1DC8E&sha=0" loop=""></video>
+			<p class="second_bg sprite">
+				
+			</p>
+		</div>
+
+		<div class="third_box">
+			<video src="http://videooc.tc.qq.com/vcloud1022.tc.qq.com/1022_e69987bb8934400eb786a159f45985ce.f0.mp4?vkey=F7D4B1B1A30D71B2ACBF1A903F354155462A59491ECF8E0CFA72E14211A1D4799A5AC00337FAE8410189EC53EA074964DA202B46E2D17C60B0A6F273BBB6B94FF3883429741E1D8926F53FCCBC0D6BD5BBCCEB968D20D693&sha=0" loop=""></video>
+			<p class="third_bg sprite">
+				
+			</p>
+		</div>
+	</div>
+	
+<script type="text/javascript">
+	var index = 0 //定义显示的是第几个视频
+    // 找到所有的视频盒子
+  	var video_boxs = document.querySelectorAll('.container > div')
+  	// 有多少个视频盒子
+  	var box_length = video_boxs.length-1
+  	/**
+  	 * 切换盒子函数
+  	 * @param  {string} step 方向：up向上；down向下
+  	 */
+  	function changeBox(step,num=-1) {
+  		// 暂停
+ 	 	video_boxs[index].querySelector('video').pause()
+
+ 	 	if (num >= 0) {
+ 	 		// 点击左侧导航nav直接跳转至指定的视频
+ 	 		index = num
+ 	 	}else{
+ 	 		if (step == 'down') {
+	 	 		// 往下的时候
+				index  = ++index >= box_length ? box_length : index
+				ceDaoHang++
+	 	 	}else {
+	 	 		// 往上的时候
+				index = --index <= 0 ? 0 : index
+				ceDaoHang--
+	 	 	}
+	 	 	changeColor(ceDaoHang)
+ 	 	}
+		var y = -780*index
+		document.querySelector('.container').style.transform = 'translate(0,'+y+'px)'
+
+		video_boxs[index].querySelector('video').play()
+		// 标识已经切换完毕
+		isChange = false
+  	}
+
+  	// 键盘触发后的事件
+   	 function keyHandle(event){
+   	 
+   	 	var step = ''
+ 	 	if (event.key == 'ArrowDown') {
+ 	 		// 往下的时候
+			step = 'down'
+ 	 	}else if(event.key == 'ArrowUp') {
+ 	 		// 往上的时候
+			step = 'up'
+ 	 	}
+	 	changeBox(step)
+   	 }
+
+   	 var isChange = false
+   	 // 滚轮触发后的事件
+ 	function scrollHandle(event) {
+ 		// 火狐以外的用window.event
+ 		var e = event || window.event
+
+ 		// 火狐以外的用e.wheelDelta
+ 		var num = e.detail == 0 ? -e.wheelDelta : e.detail
+ 		
+ 		var step = ''
+ 		if(num > 0){
+ 			// 向下
+ 			step = 'down'
+ 		}else{
+ 			// 向上
+			step = 'up'
+
+ 		}
+ 		// 隔3秒才执行盒子切换
+ 		// 每滚动只执行一次
+ 		if (!isChange) {
+ 			// 如果没有切换盒子，那么就执行changeBox
+ 			setTimeout(function () {
+ 				changeBox(step)
+ 			},200)
+ 			// 改变为正在切换
+ 			isChange = true
+ 		}
+ 		
+ 	}
+
+ 	var x = document.getElementById('Id0');
+ 	var ceDaoHang = 0;
+ 	function changeTo(index) {
+
+ 		changeBox('',index);
+ 		ceDaoHang = index;
+ 		changeColor(ceDaoHang);
+ 	}
+ 	function changeColor(index){
+ 		x.style.color="#fff";
+ 		if(index == 0){
+			x = document.getElementById('Id0');
+		}else if(index == 1){
+			x = document.getElementById('Id1');
+		}else{
+			x = document.getElementById('Id2');
+		}
+		x.style.color="Red";
+ 	}
+
+   	  window.addEventListener('keydown',keyHandle,true)
+
+   	  // 火狐
+   	  if (document.addEventListener) { 
+   	  	document.addEventListener('DOMMouseScroll',scrollHandle,false)
+   	  }
+   	  // 360浏览器
+	  window.onmousewheel = document.onmousewheel = scrollHandle;
+
+
+   </script>
+</body>
+</html>
